@@ -54,9 +54,9 @@ export function PatientForms() {
 					fieldType={FormFieldType.INPUT}
 					control={form.control}
 					name="name"
-					lable="Full Name"
+					label="Full Name"
 					placeholder="John Doe"
-					iconSrc="/assets/icons.user.svg"
+					iconSrc="/assets/icons/user.svg"
 					iconAlt="user"
 				/>
 				<Button type="submit">Submit</Button>
