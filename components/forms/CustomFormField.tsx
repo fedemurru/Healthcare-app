@@ -13,7 +13,8 @@ import { Control } from "react-hook-form";
 import { FormFieldType } from "./PatientForms";
 import Image from "next/image";
 import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { E164Number } from "react-phone-number-input";
+import { useState } from "react";
 
 interface CustomProps {
 	control: Control<any>;
@@ -31,6 +32,7 @@ interface CustomProps {
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
+	const [phone, setPhone] = useState<E164Number | undefined>(undefined);
 	const { fieldType, name, label, placeholder, iconSrc, iconAlt } = props;
 	switch (props.fieldType) {
 		case FormFieldType.INPUT:
@@ -62,10 +64,25 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 						placeholder={props.placeholder}
 						international
 						withCountryCallingCode
-						value={field.value as E164Number | undefined}
-						onChange={field.onChange}
+						value={phone}
+						onChange={setPhone}
 						className="input-phone"
 					/>
+				</FormControl>
+			);
+		case FormFieldType.CHECKBOX:
+			return (
+				<FormControl>
+					<div className="flex items-center gap-4">
+						<Checkbox
+							id={props.name}
+							checked={field.value}
+							onCheckedChange={field.onChange}
+						/>
+						<label htmlFor={props.name} className="checkbox-label">
+							{props.label}
+						</label>
+					</div>
 				</FormControl>
 			);
 		default:
