@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomFormField from "./CustomFormField";
 import { UserFormValidation } from "@/lib/validation";
+import SubmitButton from "../SubmitButton";
 
 export enum FormFieldType {
 	INPUT = "input",
@@ -34,7 +35,9 @@ export function PatientForms() {
 	const form = useForm<z.infer<typeof UserFormValidation>>({
 		resolver: zodResolver(UserFormValidation),
 		defaultValues: {
-			username: "",
+			name: "",
+			email: "",
+			phone: "",
 		},
 	});
 
@@ -73,9 +76,9 @@ export function PatientForms() {
 					control={form.control}
 					name="phone"
 					label="Phone Number"
-					placeholder="+44 1234 56 78 910"
+					placeholder="+44 1234 56 34 567"
 				/>
-				<Button type="submit">Submit</Button>
+				<SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
 			</form>
 		</Form>
 	);
