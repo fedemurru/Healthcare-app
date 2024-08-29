@@ -1,3 +1,4 @@
+import { lstat } from "fs";
 import * as sdk from "node-appwrite";
 
 //db setup
