@@ -19,6 +19,7 @@ import { useState } from "react";
 import { E164Number } from "libphonenumber-js/core";
 import { Textarea } from "../ui/textarea";
 import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface CustomProps {
 	control: Control<any>;
@@ -37,7 +38,17 @@ interface CustomProps {
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 	const [phoneNumber, setPhoneNumber] = useState<string | undefined>(undefined);
-	const { fieldType, name, label, placeholder, iconSrc, iconAlt } = props;
+	const {
+		fieldType,
+		name,
+		label,
+		placeholder,
+		iconSrc,
+		iconAlt,
+		dateFormat,
+		showTimeSelect,
+		renderSkeleton,
+	} = props;
 	switch (props.fieldType) {
 		case FormFieldType.INPUT:
 			return (
@@ -99,7 +110,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 						<ReactDatePicker
 							showTimeSelect={props.showTimeSelect ?? false}
 							selected={field.value}
-							// onChange={(date: Date) => field.onChange(date)}
+							onChange={(date) => field.onChange(date)}
 							timeInputLabel="Time:"
 							dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
 							wrapperClassName="date-picker"
