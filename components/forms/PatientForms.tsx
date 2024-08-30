@@ -12,7 +12,6 @@ import CustomFormField from "./CustomFormField";
 import { UserFormValidation } from "@/lib/validation";
 import SubmitButton from "../SubmitButton";
 import { createUser } from "@/lib/actions/patient.action";
-// import { createUser } from "@/lib/actions/patient.action";
 
 export enum FormFieldType {
 	INPUT = "input",

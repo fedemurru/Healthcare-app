@@ -4,21 +4,18 @@ export const UserFormValidation = z.object({
 	name: z
 		.string()
 		.min(2, "Name must be at least 2 characters")
-		.max(20, "Name must be at most 20 characters"),
+		.max(50, "Name must be at most 50 characters"),
 	email: z.string().email("Invalid email address"),
 	phone: z
 		.string()
-		.refine(
-			(phone) => /^[+]?[0-9\s]{7,25}$/.test(phone),
-			"Invalid phone numberhhh"
-		),
+		.refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
 });
 
 export const PatientFormValidation = z.object({
 	name: z
 		.string()
 		.min(2, "Name must be at least 2 characters")
-		.max(40, "Name must be at most 50 characters"),
+		.max(50, "Name must be at most 50 characters"),
 	email: z.string().email("Invalid email address"),
 	phone: z
 		.string()
