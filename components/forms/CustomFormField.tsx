@@ -17,6 +17,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useState } from "react";
 import { E164Number } from "libphonenumber-js/core";
+import { Textarea } from "../ui/textarea";
 
 interface CustomProps {
 	control: Control<any>;
@@ -72,6 +73,32 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 					/>
 				</FormControl>
 			);
+		case FormFieldType.TEXTAREA:
+			return (
+				<FormControl>
+					<Textarea
+						placeholder={props.placeholder}
+						{...field}
+						className="shad-textArea"
+						disabled={props.disabled}
+					/>
+				</FormControl>
+			);
+		// case FormFieldType.SELECT:
+		// 	return (
+		// 	  <FormControl>
+		// 		<Select onValueChange={field.onChange} defaultValue={field.value}>
+		// 		  <FormControl>
+		// 			<SelectTrigger className="shad-select-trigger">
+		// 			  <SelectValue placeholder={props.placeholder} />
+		// 			</SelectTrigger>
+		// 		  </FormControl>
+		// 		  <SelectContent className="shad-select-content">
+		// 			{props.children}
+		// 		  </SelectContent>
+		// 		</Select>
+		// 	  </FormControl>
+		// 	);
 		// case FormFieldType.CHECKBOX:
 		// 	return (
 		// 		<FormControl>
