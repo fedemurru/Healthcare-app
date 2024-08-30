@@ -21,6 +21,8 @@ import "react-phone-number-input/style.css";
 import SubmitButton from "../SubmitButton";
 import CustomFormField from "./CustomFormField";
 import { FormFieldType } from "./PatientForms";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { GenderOptions } from "@/constants";
 
 const RegisterForm = ({ user }: { user: User }) => {
 	const router = useRouter();
@@ -112,6 +114,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 					<CustomFormField
 						fieldType={FormFieldType.INPUT}
 						control={form.control}
+						label="Full Name"
 						name="name"
 						placeholder="John Doe"
 						iconSrc="/assets/icons/user.svg"
@@ -155,7 +158,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 							label="Gender"
 							renderSkeleton={(field) => (
 								<FormControl>
-									{/* <RadioGroup
+									<RadioGroup
 										className="flex h-11 gap-6 xl:justify-between"
 										onValueChange={field.onChange}
 										defaultValue={field.value}
@@ -168,7 +171,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 												</Label>
 											</div>
 										))}
-									</RadioGroup> */}
+									</RadioGroup>
 								</FormControl>
 							)}
 						/>
