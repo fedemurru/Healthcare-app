@@ -24,6 +24,7 @@ import { FormFieldType } from "./PatientForms";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 import { SelectItem } from "../ui/select";
+import { FileUploader } from "../ui/FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
 	const router = useRouter();
@@ -338,7 +339,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 						label="Scanned Copy of Identification Document"
 						renderSkeleton={(field) => (
 							<FormControl>
-								{/* <FileUploader files={field.value} onChange={field.onChange} /> */}
+								<FileUploader files={field.value} onChange={field.onChange} />
 							</FormControl>
 						)}
 					/>
