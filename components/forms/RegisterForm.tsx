@@ -22,7 +22,12 @@ import SubmitButton from "../SubmitButton";
 import CustomFormField from "./CustomFormField";
 import { FormFieldType } from "./PatientForms";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
+import {
+	Doctors,
+	GenderOptions,
+	IdentificationTypes,
+	PatientFormDefaultValues,
+} from "@/constants";
 import { SelectItem } from "../ui/select";
 import { FileUploader } from "../ui/FileUploader";
 
@@ -31,8 +36,9 @@ const RegisterForm = ({ user }: { user: User }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const form = useForm<z.infer<typeof PatientFormValidation>>({
-		resolver: zodResolver(UserFormValidation),
+		resolver: zodResolver(PatientFormValidation),
 		defaultValues: {
+			...PatientFormDefaultValues,
 			name: "",
 			email: "",
 			phone: "",
