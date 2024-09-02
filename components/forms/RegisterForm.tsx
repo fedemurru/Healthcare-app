@@ -30,6 +30,7 @@ import {
 } from "@/constants";
 import { SelectItem } from "../ui/select";
 import { FileUploader } from "../ui/FileUploader";
+import { registerPatient } from "@/lib/actions/patient.action";
 
 const RegisterForm = ({ user }: { user: User }) => {
 	const router = useRouter();
@@ -39,9 +40,9 @@ const RegisterForm = ({ user }: { user: User }) => {
 		resolver: zodResolver(PatientFormValidation),
 		defaultValues: {
 			...PatientFormDefaultValues,
-			name: "",
-			email: "",
-			phone: "",
+			name: user.name,
+			email: user.email,
+			phone: user.phone,
 		},
 	});
 
@@ -90,11 +91,11 @@ const RegisterForm = ({ user }: { user: User }) => {
 				privacyConsent: values.privacyConsent,
 			};
 
-			// const newPatient = await registerPatient(patient);
+			const newPatient = await registerPatient(patient);
 
-			// if (newPatient) {
-			// 	router.push(`/patients/${user.$id}/new-appointment`);
-			// }
+			if (newPatient) {
+				router.push(`/patients/${user.$id}/new-appointment`);
+			}
 		} catch (error) {
 			console.log(error);
 		}
