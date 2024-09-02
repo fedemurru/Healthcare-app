@@ -26,6 +26,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "../ui/select";
+import { Checkbox } from "../ui/checkbox";
 
 interface CustomProps {
 	control: Control<any>;
@@ -139,21 +140,21 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 					</Select>
 				</FormControl>
 			);
-		// case FormFieldType.CHECKBOX:
-		// 	return (
-		// 		<FormControl>
-		// 			<div className="flex items-center gap-4">
-		// 				<Checkbox
-		// 					id={props.name}
-		// 					checked={field.value}
-		// 					onCheckedChange={field.onChange}
-		// 				/>
-		// 				<label htmlFor={props.name} className="checkbox-label">
-		// 					{props.label}
-		// 				</label>
-		// 			</div>
-		// 		</FormControl>
-		// 	);
+		case FormFieldType.CHECKBOX:
+			return (
+				<FormControl>
+					<div className="flex items-center gap-4">
+						<Checkbox
+							id={props.name}
+							checked={field.value}
+							onCheckedChange={field.onChange}
+						/>
+						<label htmlFor={props.name} className="checkbox-label">
+							{props.label}
+						</label>
+					</div>
+				</FormControl>
+			);
 		case FormFieldType.SKELETON:
 			return props.renderSkeleton ? props.renderSkeleton(field) : null;
 		default:
@@ -163,6 +164,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 
 const CustomFormField = (props: CustomProps) => {
 	const { control, fieldType, name, label } = props;
+
 	return (
 		<FormField
 			control={control}
