@@ -22,7 +22,7 @@ import SubmitButton from "../SubmitButton";
 import CustomFormField from "./CustomFormField";
 import { FormFieldType } from "./PatientForms";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Doctors, GenderOptions } from "@/constants";
+import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 import { SelectItem } from "../ui/select";
 
 const RegisterForm = ({ user }: { user: User }) => {
@@ -316,11 +316,11 @@ const RegisterForm = ({ user }: { user: User }) => {
 						label="Identification Type"
 						placeholder="Select identification type"
 					>
-						{/* {IdentificationTypes.map((type, i) => (
+						{IdentificationTypes.map((type, i) => (
 							<SelectItem key={type + i} value={type}>
 								{type}
 							</SelectItem>
-						))} */}
+						))}
 					</CustomFormField>
 
 					<CustomFormField
