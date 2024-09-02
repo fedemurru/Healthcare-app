@@ -22,7 +22,8 @@ import SubmitButton from "../SubmitButton";
 import CustomFormField from "./CustomFormField";
 import { FormFieldType } from "./PatientForms";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { GenderOptions } from "@/constants";
+import { Doctors, GenderOptions } from "@/constants";
+import { SelectItem } from "../ui/select";
 
 const RegisterForm = ({ user }: { user: User }) => {
 	const router = useRouter();
@@ -229,7 +230,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 						label="Primary care physician"
 						placeholder="Select a physician"
 					>
-						{/* {Doctors.map((doctor, i) => (
+						{Doctors.map((doctor, i) => (
 							<SelectItem key={doctor.name + i} value={doctor.name}>
 								<div className="flex cursor-pointer items-center gap-2">
 									<Image
@@ -242,7 +243,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 									<p>{doctor.name}</p>
 								</div>
 							</SelectItem>
-						))} */}
+						))}
 					</CustomFormField>
 
 					{/* INSURANCE & POLICY NUMBER */}
