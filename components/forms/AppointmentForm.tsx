@@ -9,10 +9,7 @@ import { z } from "zod";
 
 import { SelectItem } from "@/components/ui/select";
 import { Doctors } from "@/constants";
-// import {
-// 	createAppointment,
-// 	updateAppointment,
-// } from "@/lib/actions/appointment.actions";
+import { createAppointment } from "@/lib/actions/appointment.actions";
 import { getAppointmentSchema } from "@/lib/validation";
 import { Appointment } from "@/types/appwrite.types";
 
@@ -83,14 +80,14 @@ export const AppointmentForm = ({
 					note: values.note,
 				};
 
-				// const newAppointment = await createAppointment(appointment);
+				const newAppointment = await createAppointment(appointment);
 
-				// if (newAppointment) {
-				// 	form.reset();
-				// 	router.push(
-				// 		`/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
-				// 	);
-				// }
+				if (newAppointment) {
+					form.reset();
+					router.push(
+						`/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
+					);
+				}
 			} else {
 				const appointmentToUpdate = {
 					userId,
