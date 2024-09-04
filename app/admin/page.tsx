@@ -60,4 +60,12 @@ import Link from "next/link";
 // 	);
 // };
 
-// export default AdminPage;
+const AdminPage = async () => {
+	return (
+		<div className="mx-auto flex max-w-7xl flex-col space-y-14">
+			Hello admin
+		</div>
+	);
+};
+
+export default AdminPage;
