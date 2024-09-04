@@ -9,7 +9,10 @@ import { z } from "zod";
 
 import { SelectItem } from "@/components/ui/select";
 import { Doctors } from "@/constants";
-import { createAppointment } from "@/lib/actions/appointment.actions";
+import {
+	createAppointment,
+	updateAppointment,
+} from "@/lib/actions/appointment.actions";
 import { getAppointmentSchema } from "@/lib/validation";
 import { Appointment } from "@/types/appwrite.types";
 
@@ -28,7 +31,7 @@ export const AppointmentForm = ({
 	setOpen,
 }: {
 	userId: string;
-	patientId?: string;
+	patientId: string;
 	type: "create" | "schedule" | "cancel";
 	appointment?: Appointment;
 	setOpen?: Dispatch<SetStateAction<boolean>>;
@@ -67,10 +70,9 @@ export const AppointmentForm = ({
 			default:
 				status = "pending";
 		}
-		console.log("before", type);
 
 		try {
-			if (type === "create" && patientId) {
+			if (type === "create") {
 				const appointment = {
 					userId,
 					patient: patientId,
@@ -80,17 +82,17 @@ export const AppointmentForm = ({
 					status: status as Status,
 					note: values.note,
 				};
+
 				const newAppointment = await createAppointment(appointment);
 
 				if (newAppointment) {
-					console.log("after", type);
 					form.reset();
 					router.push(
 						`/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
 					);
 				}
 			} else {
-				console.log("sono qui", type);
+				console.log("sono qui");
 				const appointmentToUpdate = {
 					userId,
 					appointmentId: appointment?.$id!,
@@ -103,12 +105,12 @@ export const AppointmentForm = ({
 					type,
 				};
 
-				// const updatedAppointment = await updateAppointment(appointmentToUpdate);
+				const updatedAppointment = await updateAppointment(appointmentToUpdate);
 
-				// if (updatedAppointment) {
-				// 	setOpen && setOpen(false);
-				// 	form.reset();
-				// }
+				if (updatedAppointment) {
+					setOpen && setOpen(false);
+					form.reset();
+				}
 			}
 		} catch (error) {
 			console.log(error);
@@ -125,7 +127,7 @@ export const AppointmentForm = ({
 			buttonLabel = "Schedule Appointment";
 			break;
 		default:
-			buttonLabel = "Submit Appointment";
+			buttonLabel = "Submit Apppointment";
 	}
 
 	return (
