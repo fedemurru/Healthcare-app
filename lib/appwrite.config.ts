@@ -1,7 +1,4 @@
-import { lstat } from "fs";
 import * as sdk from "node-appwrite";
-
-//db setup
 
 export const {
 	NEXT_PUBLIC_ENDPOINT: ENDPOINT,

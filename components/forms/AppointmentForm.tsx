@@ -28,7 +28,7 @@ export const AppointmentForm = ({
 	setOpen,
 }: {
 	userId: string;
-	patientId: string;
+	patientId?: string;
 	type: "create" | "schedule" | "cancel";
 	appointment?: Appointment;
 	setOpen?: Dispatch<SetStateAction<boolean>>;
@@ -67,6 +67,7 @@ export const AppointmentForm = ({
 			default:
 				status = "pending";
 		}
+		console.log("before", type);
 
 		try {
 			if (type === "create" && patientId) {
@@ -79,16 +80,17 @@ export const AppointmentForm = ({
 					status: status as Status,
 					note: values.note,
 				};
-
 				const newAppointment = await createAppointment(appointment);
 
 				if (newAppointment) {
+					console.log("after", type);
 					form.reset();
 					router.push(
 						`/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
 					);
 				}
 			} else {
+				console.log("sono qui", type);
 				const appointmentToUpdate = {
 					userId,
 					appointmentId: appointment?.$id!,
@@ -123,7 +125,7 @@ export const AppointmentForm = ({
 			buttonLabel = "Schedule Appointment";
 			break;
 		default:
-			buttonLabel = "Submit Apppointment";
+			buttonLabel = "Submit Appointment";
 	}
 
 	return (

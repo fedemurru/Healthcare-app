@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-// import { AppointmentForm } from "@/components/forms/
 import { getPatient } from "@/lib/actions/patient.action";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 
