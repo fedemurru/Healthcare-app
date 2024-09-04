@@ -92,7 +92,6 @@ export const AppointmentForm = ({
 					);
 				}
 			} else {
-				console.log("sono qui");
 				const appointmentToUpdate = {
 					userId,
 					appointmentId: appointment?.$id!,
